@@ -1,0 +1,19 @@
+<style>
+    .btn-group-lg {
+        display: flex;
+    }
+</style>
+<div class="jumbotron">
+    <div class="text-center" ng-show="authenticated">
+        <h1>{{ctrl.greeting.content}}</h1>
+        <br>
+        <div class="btn-group text-center">
+            <a type="button" class="btn-lg btn-info" ng-href="/main">Lista de Clientes</a>
+            <a type="button" class="btn-lg btn-success" ng-href="/cliente">Nuevo Cliente</a>
+        </div>
+    </div>
+    <div class="text-center" ng-show="!authenticated">
+        <h1>Inicia sesión para ver tus clientes</h1><br><br>
+        <a type="button" class="btn-lg btn-primary" ng-href="/login">INICIAR SESIÓN</a>
+    </div>
+</div>

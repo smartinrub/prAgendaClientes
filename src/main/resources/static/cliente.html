@@ -1,0 +1,119 @@
+<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <span class="lead" ng-bind="ctrl.titulo" ></span>
+                <button type="button" ng-hide="!ctrl.cliente.id" ng-click="ctrl.deleteCliente(ctrl.cliente.id)" class="btn btn-danger pull-right" >Eliminar</button>
+            </h4>
+            <div class="clearfix"></div>
+        </div>
+        <div class="panel-body">
+            <form ng-submit="ctrl.enviar()" name="formulario" novalidate>
+                <div class="form-group">
+                    <label class="control-label" for="nombre">Nombre</label>
+                    <input type="text" ng-model="ctrl.cliente.nombre" ng-minlength="3" id="nombre" name="nombre" class="form-control" placeholder="Nombre" required />
+                    <div class="text-danger" ng-show="formulario.$dirty">
+                        <span ng-show="formulario.nombre.$error.required">Campo obligatorio</span>
+                        <span ng-show="formulario.nombre.$error.minlength">Logitud mínima de 3 caracteres</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="telefono">Teléfono</label>
+                    <input type="text" ng-model="ctrl.cliente.telefono" ng-minlength="9" id="telefono" name="telefono" class="form-control" placeholder="Telefono" required/>
+                    <div class="text-danger" ng-show="formulario.$dirty">
+                        <span ng-show="formulario.telefono.$error.required">Campo obligatorio</span>
+                        <span ng-show="formulario.telefono.$error.minlength">Numero demasiado corto</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="direccion">Dirección</label>
+                    <input type="text" ng-model="ctrl.cliente.direccion" id="direccion" name="direccion" class="form-control" placeholder="Dirección" />
+                </div>
+                <div class="form-group">
+                    <label class="control-label" for="email">Email</label>
+                    <input type="email" ng-model="ctrl.cliente.email" ng-pattern = '/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i' id="email" name="email" class="form-control" placeholder="Email" />
+                    <div class="text-danger" ng-show="formulario.$dirty">
+                        <span ng-show="formulario.email.$error.pattern">Email inválido</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="ctrl.cliente.contactoFrio" >
+                        Contacto frio
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="ctrl.cliente.referencia" >
+                        Referencia
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="ctrl.cliente.recibioCmcp" >
+                        Recibió CMCP
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="ctrl.cliente.fueAnfitriona" >
+                        Fue Anfitriona
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="ctrl.cliente.sesionColor" >
+                        Sesión color
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="ctrl.cliente.sesionFragancias" >
+                        Sesión Fragancias
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="ctrl.cliente.compartiOportunidad" >
+                        Compartí Oportunidad
+                    </label>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" ng-model="ctrl.cliente.asistioEvento" >
+                        Asistió Evento
+                    </label>
+                </div>
+                <fieldset class="form-group">
+                    <legend>Personalidad</legend>
+                    <label class="radio-inline">
+                        <input type="radio" ng-model="ctrl.cliente.personalidad" name="personalidad" value="dominante" >
+                        Dominante
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" ng-model="ctrl.cliente.personalidad" name="personalidad" value="familiar" >
+                        Familiar
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" ng-model="ctrl.cliente.personalidad" name="personalidad" value="perfeccionista" >
+                        Perfeccionista
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" ng-model="ctrl.cliente.personalidad"  name="personalidad" value="social" checked="true" >
+                        Social
+                    </label>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea ng-model="ctrl.cliente.observaciones" class="form-control" rows="3" id="observaciones"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <input type="submit" ng-disabled="formulario.$invalid"  value="{{!ctrl.cliente.id ? 'Añadir' : 'Actualizar'}}" class="btn btn-primary">
+                    <button type="button" ng-click="ctrl.limpiar()" class="btn btn-warning" ng-disabled="formulario.$pristine">Limpiar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

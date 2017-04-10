@@ -1,0 +1,29 @@
+<div class="jumbotron">
+    <h1 class="h1 text-center">Entra Ahora</h1>
+</div>
+<div class="alert alert-danger" ng-show="ctrl.error">
+    Contraseña o/y usuario incorrectos. Por favor inténtelo de nuevo.
+</div>
+<div class="thumbnail col-sm-6 col-sm-offset-3" style="padding: 30px">
+    <form role="form" name="formulario" ng-submit="ctrl.login()" novalidate>
+        <div class="form-group">
+            <label for="username">Usuario:</label> 
+            <input type="text"
+                   class="form-control" id="username" 
+                   name="username" ng-model="ctrl.credentials.username" required/>
+            <div class="text-danger" ng-show="formulario.$dirty">
+                <span ng-show="formulario.username.$error.required">Falta usuario</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="password">Clave:</label> 
+            <input type="password"
+                   class="form-control" id="password" 
+                   name="password" ng-model="ctrl.credentials.password" required/>
+            <div class="text-danger" ng-show="formulario.$dirty">
+                <span ng-show="formulario.password.$error.required">Falta contraseña</span>
+            </div>
+        </div>
+        <button ng-disabled="formulario.$invalid" type="submit" class="btn btn-primary">Enviar</button>
+    </form>
+</div>

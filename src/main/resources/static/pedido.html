@@ -1,0 +1,85 @@
+<style>
+    .btn-group {
+        display: flex;
+    }
+</style>
+<div class="panel panel-success">
+    <div class="panel-heading">
+        <span class="lead">Pedido</span>
+    </div>
+    <div class="panel-body">
+        <form ng-submit="ctrl.enviar()" name="formulario" novalidate>
+            <div class="form-group">
+                <label class="control-label" for="producto">Producto</label>
+                <input type="text" ng-model="ctrl.pedido.producto" id="producto" name="producto" class="form-control input-sm" placeholder="Producto" required ng-minlength="3"/>
+                <div class="text-danger" ng-show="formulario.$dirty">
+                    <span ng-show="formulario.producto.$error.required">Este campo es obligatorio</span>
+                    <span ng-show="formulario.producto.$error.minlength">Debe contener al menos tres carácteres</span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="precio">Precio</label>
+                <input type="number" ng-model="ctrl.pedido.precio" id="precio" name="precio" class="form-control input-sm" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="dto">%Dto.</label>
+                <input type="number" ng-model="ctrl.pedido.dto" id="dto" name="dto" class="form-control input-sm" />
+            </div>
+            <div class="form-group">
+                <label class="control-label" for="ac">A/C</label>
+                <input type="number" ng-model="ctrl.pedido.ac" id="ac" name="ac" class="form-control input-sm" />
+            </div>
+            <div class="form-group">
+                <label class="checkbox-inline">
+                    <input type="checkbox" ng-model="ctrl.pedido.cobrado" />
+                    Cobrado
+                </label>
+            </div>
+
+            <div class="form-group">
+                <div class="form-actions">
+                    <input type="submit" value="{{!ctrl.pedido.id ? 'Añadir' : 'Actualizar'}}" class="btn btn-primary btn-sm" ng-disabled="formulario.$invalid">
+                    <button type="button" ng-click="ctrl.limpiar()" class="btn btn-warning btn-sm" ng-disabled="formulario.$pristine">Limpiar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <span class="lead">Pedidos Cliente</span>
+        </h4>
+        <div class="clearfix"></div>
+    </div>
+    <div >
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Producto</th>
+                    <th>Precio</th>
+                    <th>%Dto.</th>
+                    <th>A/C</th>
+                    <th>Cobrado</th>
+                    <th width="20%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pedido in ctrl.pedidos| orderBy:'-fecha'">
+                    <td><span ng-bind="pedido.fecha | date:'dd / MM / yyyy'"></span></td>
+                    <td><span ng-bind="pedido.producto"></span></td>
+                    <td><span ng-bind="pedido.precio | currency:'€'"></span></td>
+                    <td><span ng-bind="pedido.dto | number:1"></span></td>
+                    <td><span ng-bind="pedido.ac | currency:'€'"></span></td>
+                    <td><span ng-bind="pedido.cobrado ? 'Si' : 'No'"></span></td>
+                    <td class="btn-group">
+                        <button type="button" ng-click="ctrl.editar(pedido.id)" class="btn btn-warning">Editar</button>
+                        <button type="button" ng-click="ctrl.remove(pedido.id)" class="btn btn-danger" >Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

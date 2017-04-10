@@ -1,0 +1,37 @@
+<style>
+    .btn-group {
+        display: flex;
+    }
+</style>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <span class="lead">Lista de Clientes </span>
+            <a type="button" ng-href="/cliente" class="btn btn-success pull-right">NUEVO</a>
+        </h4>
+        <div class="clearfix"></div>
+    </div>
+    <div >
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Teléfono</th>
+                    <th>Dirección</th>
+                    <th width="20%"></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="cliente in ctrl.clientes| orderBy:'nombre'">
+                    <td><span ng-bind="cliente.nombre"></span></td>
+                    <td><span ng-bind="cliente.telefono"></span></td>
+                    <td><span ng-bind="cliente.direccion"></span></td>
+                    <td class="btn-group">
+                        <a type="button" ng-href="/pedido/{{cliente.id}}" class="btn btn-info" >Pedidos</a>
+                        <a type="button" ng-href="/cliente/{{cliente.id}}" class="btn btn-warning">Editar</a>  
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
