@@ -55,4 +55,6 @@ CREATE TABLE `pedidos` (
 
 When you have everything set up and the .jar file has been generated you can deploy the application by typing the following command into your unix terminal:
 
-java -jar prAgendaClientes-0.0.1-SNAPSHOT.jar
+java -jar prAgendaClientes-1.0.jar
+
+You also can run this application at startup by adding the previos command into /etc/rc.local
